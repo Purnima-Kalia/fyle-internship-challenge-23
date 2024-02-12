@@ -1,0 +1,8 @@
+<!-- repository-list.component.html -->
+
+<ul>
+    <li *ngFor="let repo of repositories" class="repo-item">
+      <a [href]="repo.html_url" target="_blank" class="repo-link">{{ repo.name }}</a>
+    </li>
+  </ul>
+  

@@ -1,17 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { ApiService } from './services/api.service';
+// app.component.ts
+import { Component } from '@angular/core';
+import { GithubService } from './github.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
-  constructor(
-    private apiService: ApiService
-  ) {}
+export class AppComponent {
+  repositories: any[] = [];
 
-  ngOnInit() {
-    this.apiService.getUser('johnpapa').subscribe(console.log);
+  constructor(private githubService: GithubService) {}
+
+  onSearch(username: string) {
+    this.githubService.getUserRepos(username).subscribe(repos => {
+      this.repositories = repos;
+    });
   }
 }
